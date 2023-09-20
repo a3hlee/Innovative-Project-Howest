@@ -21,6 +21,7 @@ project te kunnen uitvoeren:
 
 ## Bronnenlijst
 ### Firebase
+- Mondeling
 - https://firebase.google.com/
 - https://www.ericthecoder.com/2018/02/10/getting-started-with-firebase-using-angularjs/
 
