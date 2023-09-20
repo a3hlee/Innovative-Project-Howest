@@ -20,4 +20,10 @@ project te kunnen uitvoeren:
 - ...
 
 ## Bronnenlijst
-Hou hier een up-to-date lijst bij van alle door jou aangewende bronnen.
+### Firebase
+- https://firebase.google.com/
+- https://www.ericthecoder.com/2018/02/10/getting-started-with-firebase-using-angularjs/
+
+### AngularJs
+- Mondeling
+- https://angularjs.org/
