@@ -1,6 +1,8 @@
-# Organizeer deze map zoals je zelf wenst
+# Inhoudstafel
 
-Plaats hier je research nota's, voorbereidingen en verslagen.
+1. Planning
 
-Overschrijf deze readme gerust met een aangename inhoudstabel.
+# 1. Planning
+** 02/10 - ... **
+Angular 16 leren kennen via 'https://angular.io/start' (ook vermeld in bronnenlijst). Hier staat er een mooie 'Getting Started' oefening die ik volledig uit heb gewerkt en zelf een aantal dingen aan heb toegevoegd, zoals iets verwijderen uit een array (https://www.itsolutionstuff.com/post/angular-how-to-remove-element-from-arrayexample.html).
 
