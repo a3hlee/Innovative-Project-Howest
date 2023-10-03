@@ -25,6 +25,7 @@ project te kunnen uitvoeren:
 - https://firebase.google.com/
 - https://www.ericthecoder.com/2018/02/10/getting-started-with-firebase-using-angularjs/
 
-### AngularJs
+### AngularJs (versie 16)
 - Mondeling
 - https://angularjs.org/
+- https://angular.io/start
