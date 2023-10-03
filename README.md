@@ -29,3 +29,4 @@ project te kunnen uitvoeren:
 - Mondeling
 - https://angularjs.org/
 - https://angular.io/start
+- https://www.itsolutionstuff.com/post/angular-how-to-remove-element-from-arrayexample.html
