@@ -23,10 +23,12 @@ project te kunnen uitvoeren:
 ### Firebase
 - Mondeling
 - https://firebase.google.com/
-- https://www.ericthecoder.com/2018/02/10/getting-started-with-firebase-using-angularjs/
+- https://www.bezkoder.com/integrate-firebase-angular-16/
+- https://console.firebase.google.com/project/foodstore-gwenny/firestore
 
-### AngularJs (versie 16)
+### Angular (versie 16)
 - Mondeling
-- https://angularjs.org/
 - https://angular.io/start
+- https://angular.io/docs
+- https://material.angular.io/
 - https://www.itsolutionstuff.com/post/angular-how-to-remove-element-from-arrayexample.html
