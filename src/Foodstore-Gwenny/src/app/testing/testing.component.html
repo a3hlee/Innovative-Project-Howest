@@ -1,0 +1,7 @@
+<ul>
+    <li *ngFor="let test of (tests$ | async)">
+      <h3>{{ test.Name }}</h3>
+      <p>Id: {{ test.Id }}</p>
+    </li>
+  </ul>
+  
