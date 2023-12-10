@@ -11,11 +11,18 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { environment } from '../environments/environment';
 import { TestingComponent } from './testing/testing.component';
+import { ReactiveFormsModule } from "@angular/forms";
+import { CategoriesListComponent } from './categories/categories-list/categories-list.component';
+import { NavMenuComponent } from './nav-menu/nav-menu.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TestingComponent
+    TestingComponent,
+    CategoriesListComponent,
+    NavMenuComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -25,6 +32,7 @@ import { TestingComponent } from './testing/testing.component';
     AngularFirestoreModule,
     AngularMaterialModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

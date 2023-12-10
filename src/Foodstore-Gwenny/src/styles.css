@@ -1,4 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: "Calibri", sans-serif }
+.border-margin {
+    margin: 100px 12px 0 12px;
+}
