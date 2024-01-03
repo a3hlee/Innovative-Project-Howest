@@ -5,7 +5,7 @@ Als project heb ik gekozen om een website te maken voor mijn ouders. Ik heb dit 
 
 ### Technologieën 
 Deze website zal ik uitwerken met:
-- AngularJs
+- Angular 16
 - Html
 - Css
 - Firebase
