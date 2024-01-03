@@ -12,4 +12,10 @@ mat-toolbar {
   .router-outlet-container {
     padding-top: 64px; /* Adjust this value based on your toolbar height */
   }
+
+  a {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+  }
   

@@ -1,45 +1,49 @@
 <ul>
   <li *ngFor='let doc of categoriesArray'>
-    {{ doc.Name || doc.field }} - {{ doc.Age || "Unknown" }}
+    {{ doc.Name }} - {{ doc.Age || "Unknown" }}
   </li>
 </ul>
 
-<form [formGroup]="form">
-  <mat-form-field class="example-full-width">
+<h2>Add:</h2>
+<div class="form">
+  <mat-form-field [formGroup]="form">
     <mat-label for="name">Name:</mat-label>
-    <input matInput placeholder="Name" formControlName="name" type="text" class="input-field col s12">
+    <input matInput formControlName="name" type="text">
+    <mat-error *ngIf="form.get('name')?.hasError('required') && form.get('name')?.touched">
+      Name is <strong>required</strong>
+    </mat-error>
   </mat-form-field>
-  <div *ngIf="form.get('name')?.hasError('required') && form.get('name')?.touched">
-    <mat-error>Name is <strong>required</strong></mat-error>
-  </div>
 
-  <mat-form-field class="example-full-width">
+  <mat-form-field [formGroup]="form">
     <mat-label for="age">Age:</mat-label>
-    <input matInput placeholder="Age" formControlName="age" type="number" class="input-field col s12">
+    <input matInput formControlName="age" type="number">
   </mat-form-field>
 
-  <button mat-raised-button (click)="onSubmit()">Submit</button>
-</form>
+  <button mat-raised-button color="primary" (click)="onSubmit()">Submit</button>
+</div>
 
-<form [formGroup]="this.secondForm">
-  <input placeholder="name" formControlName="valueToGet" type="text" class="input-field col s12" />
-  <button (click)="onQuery()">
-    Query
-  </button>
-</form>
+<h2>Find:</h2>
+<div>
+  <mat-form-field [formGroup]="this.secondForm">
+    <input matInput placeholder="Name" formControlName="valueToGet" type="text" />
+  </mat-form-field>
+  <button mat-raised-button color="accent" (click)="onQuery()">Find</button>
+</div>
+
 <p style="color: red;">{{message || null}}</p>
 
 <div *ngIf="single">
-  <h1>{{single.field ||single.Name}}</h1>
-  <button style='background-color: lightblue' (click)='openEdit()'>Edit</button>
-  <button style='background-color: red' (click)='delete()'>Delete</button>
+  <h3>{{single.Name}}</h3>
+  <button mat-raised-button class="edit-button" (click)='openEdit()'>Edit</button>
+  <button mat-raised-button class="delete-button" (click)='delete()'>Delete</button>
 </div>
 
-<form *ngIf="edit" [formGroup]="this.editForm">
-  <input placeholder="{{single.Name || single.field}}" formControlName="replaceValue" type="text"
-    class="input-field col s12" />
-  <button (click)="onRename()">
-    Rename
-  </button>
-</form>
+<div *ngIf="edit">
+  <mat-form-field [formGroup]="this.editForm">
+    <input matInput placeholder={{single.Name}} formControlName="replaceValue" type="text" />
+    <mat-hint>Cannot be empty</mat-hint>
+  </mat-form-field>
+  <button mat-raised-button (click)="onRename()">Rename</button>
+</div>
+
 <p style="color: red;">{{message2 || null}}</p>

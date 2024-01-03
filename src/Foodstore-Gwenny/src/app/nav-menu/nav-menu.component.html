@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-    <span>Foodstore Gwenny</span>
+    <span><a href="/">Foodstore Gwenny</a></span>
     <span class="spacer"></span>
     <button mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon>menu</mat-icon>
@@ -7,5 +7,6 @@
     <mat-menu #menu="matMenu">
         <button mat-menu-item routerLink="/">Home</button>
         <button mat-menu-item routerLink="/test">Test</button>
+        <button mat-menu-item routerLink="/categories">Categories</button>
     </mat-menu>
 </mat-toolbar>

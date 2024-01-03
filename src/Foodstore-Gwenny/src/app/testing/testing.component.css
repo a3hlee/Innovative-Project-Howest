@@ -1,0 +1,13 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.delete-button {
+    background-color: red !important;
+}
+
+.edit-button {
+    background-color: lightblue !important;
+}
