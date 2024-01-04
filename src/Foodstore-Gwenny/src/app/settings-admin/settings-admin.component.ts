@@ -4,43 +4,41 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 
 @Component({
-  selector: 'app-testing',
-  templateUrl: './testing.component.html',
-  styleUrls: ['./testing.component.css']
+  selector: 'app-settings-admin',
+  templateUrl: './settings-admin.component.html',
+  styleUrls: ['./settings-admin.component.css']
 })
-export class TestingComponent implements OnInit {
-  categoriesArray: any[] = [];
+export class SettingsAdminComponent implements OnInit {
+  categories: any[] = [];
 
-  form = new FormGroup({
+  addForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
-    age: new FormControl('')
   });
 
-  secondForm = new FormGroup({ valueToGet: new FormControl('') })
+  findForm = new FormGroup({ getValue: new FormControl('') })
   single: any;
   message!: string;
 
   id: string = '';
   edit: boolean = false;
-  message2: string = '';
-  editForm = new FormGroup({ replaceValue: new FormControl('') })
+  editMessage: string = '';
+  editForm = new FormGroup({ editValue: new FormControl('') })
 
   constructor(private db: AngularFirestore) { }
 
   ngOnInit(): void {
-  const collectionRef = this.db.collection('test');
+  const collectionRef = this.db.collection('categories');
   const collectionInstance = collectionRef.valueChanges();
-  collectionInstance.subscribe(ss => this.categoriesArray = ss);
+  collectionInstance.subscribe(ss => this.categories = ss);
   }
 
   onSubmit() {
-    if (this.form.valid) {
-      this.db.collection('test').add({
-        Name: this.form.value.name,
-        Age: this.form.value.age
+    if (this.addForm.valid) {
+      this.db.collection('categories').add({
+        Name: this.addForm.value.name
       })
       .then(res => {
-        this.form.reset();
+        this.addForm.reset();
       })
       .catch(e => {
         console.log(e);
@@ -51,15 +49,15 @@ export class TestingComponent implements OnInit {
   }
 
   getErrorMessage() {
-    if (this.form.controls.name.hasError('required')) {
+    if (this.addForm.controls.name.hasError('required')) {
       return 'Name is required!';
     }
     return '';
   }
 
   onQuery() {
-    const docRef = this.db.collection('test', ref => ref.where("Name", "==", this.secondForm.value.valueToGet));
-    if (!this.secondForm.value.valueToGet) {
+    const docRef = this.db.collection('categories', ref => ref.where("Name", "==", this.findForm.value.getValue));
+    if (!this.findForm.value.getValue) {
       this.message = 'Cannot be empty';
       this.single = null;
     } else {
@@ -88,27 +86,39 @@ export class TestingComponent implements OnInit {
     this.edit = !this.edit
   };
 
-  onRename() {
-    if (!this.editForm.value.replaceValue) {
-        this.message2 = "Cannot Be Empty!";
+  onEdit() {
+    if (!this.editForm.value.editValue) {
+        this.editMessage = "Cannot Be Empty!";
     } else {
-        this.db.collection('test').doc(this.id).update({ Name: this.editForm.value.replaceValue });
+        this.db.collection('categories').doc(this.id).update({ Name: this.editForm.value.editValue });
         this.edit = false;
-        this.message2 = '';
-        this.secondForm.reset();
+        this.editMessage = '';
+        this.findForm.reset();
         this.editForm.reset();
         this.single = null;
     }
   }
 
-  delete() {
+  openDelete() {
     if (confirm('Delete?')) {
-        this.db.collection('test').doc(this.id).delete();
+        this.db.collection('categories').doc(this.id).delete();
         this.message = '';
-        this.secondForm.reset();
+        this.findForm.reset();
       
         this.edit = false;
         this.single = null;
     }
   }
+
+  // openDelete() {
+  //   this.dialog.open(DeleteCategoryComponent, {
+  //     width: '250px',
+  //   });
+
+  //     this.message = '';
+  //     this.findForm.reset();
+    
+  //     this.edit = false;
+  //     this.single = null;
+  // }
 }

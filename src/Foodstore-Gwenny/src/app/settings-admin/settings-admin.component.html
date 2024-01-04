@@ -1,0 +1,49 @@
+<mat-tab-group mat-align-tabs="start">
+    <mat-tab label="Categories">
+        <ul>
+            <li *ngFor='let category of categories'>
+                {{ category.Name }}
+            </li>
+        </ul>
+
+        <h2>Add:</h2>
+        <div class="form">
+            <mat-form-field [formGroup]="addForm">
+                <mat-label for="name">Name:</mat-label>
+                <input matInput formControlName="name" type="text">
+                <mat-error *ngIf="addForm.get('name')?.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+            <button mat-raised-button color="primary" (click)="onSubmit()">Submit</button>
+        </div>
+
+        <h2>Find:</h2>
+        <div>
+            <mat-form-field [formGroup]="this.findForm">
+                <input matInput placeholder="Name" formControlName="getValue" type="text" [matAutocomplete]="auto" />
+            </mat-form-field>
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor='let category of categories' [value]="category.Name">
+                    {{ category.Name }}
+                </mat-option>
+            </mat-autocomplete>
+            <button mat-raised-button color="primary" (click)="onQuery()">Find</button>
+        </div>
+
+        <p style="color: red;">{{message || null}}</p>
+
+        <div *ngIf="single">
+            <h3>{{single.Name}}</h3>
+            <button mat-raised-button color="accent" (click)='openEdit()'>Edit</button>
+            <button mat-raised-button color="warn" (click)=' openDelete()'>Delete</button>
+        </div>
+
+        <div *ngIf="edit">
+            <mat-form-field [formGroup]="this.editForm">
+                <input matInput placeholder={{single.Name}} formControlName="editValue" type="text" />
+            </mat-form-field>
+            <button mat-raised-button color="accent" (click)="onEdit()">Rename</button>
+        </div>
+
+        <p style="color: red;">{{editMessage || null}}</p>
+    </mat-tab>
+</mat-tab-group>

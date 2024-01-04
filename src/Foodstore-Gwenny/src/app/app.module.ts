@@ -15,6 +15,8 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { CategoriesListComponent } from './categories/categories-list/categories-list.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
+import { SettingsAdminComponent } from './settings-admin/settings-admin.component';
+import { DeleteCategoryComponent } from './dialogs/delete-category/delete-category.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { HomeComponent } from './home/home.component';
     TestingComponent,
     CategoriesListComponent,
     NavMenuComponent,
-    HomeComponent
+    HomeComponent,
+    SettingsAdminComponent,
+    DeleteCategoryComponent,
   ],
   imports: [
     BrowserModule,
