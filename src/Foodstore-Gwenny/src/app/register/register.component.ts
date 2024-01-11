@@ -21,31 +21,22 @@ export class RegisterComponent {
 
   register() {
     this.isLoading = true;
-    // // Get the email and password from the form
-    const email = document.getElementById('registerEmail') as HTMLInputElement;
-    const password = document.getElementById('registerPassword') as HTMLInputElement;
-     
-    // get the email and password from the form
-    // const email = this.registerForm.controls.registerEmail;
-    // const password = this.registerForm.controls.registerPassword;
+    const email = String(this.registerForm.controls.registerEmail);
+    const password = String(this.registerForm.controls.registerPassword);
   
-    // Use the AngularFireAuth service to sign in the user with the given email and   
-    //password
     if (this.registerForm.valid){
-      this.auth.createUserWithEmailAndPassword(email.value.trim(), password.value)
+      this.auth.createUserWithEmailAndPassword(email.trim(), password)
       .then(() => {
-        // If the login is successful, redirect the user to the home page
         console.log('Registration successful');
         this.isLoading = false;
-        email.value = '';
-        password.value = '';
+        // email.value = '';
+        // password.value = '';
         this.isRegisterSuccess = true;
       })
       .catch(error => {
-        // If there is an error, display a message to the user
         this.isLoading = false;
-        email.value = '';
-        password.value = '';
+        // email.value = '';
+        // password.value = '';
 
         console.error(error);
         if (error.code === 'auth/weak-password') {

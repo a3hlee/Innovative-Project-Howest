@@ -2,12 +2,12 @@
     <h1>Register</h1>
     <mat-form-field [formGroup]="registerForm">
         <mat-label for="email">Email:</mat-label>
-        <input matInput type="email" #registerEmail>
+        <input matInput type="email" formControlName="registerEmail">
         <mat-error *ngIf="registerForm.get('registerEmail')?.invalid">{{getErrorMessage()}}</mat-error>
     </mat-form-field>
     <mat-form-field [formGroup]="registerForm">
         <mat-label for="password">Password:</mat-label>
-        <input matInput type="password" #registerPassword />
+        <input matInput type="password" formControlName="registerPassword">
         <mat-error *ngIf="registerForm.get('registerPassword')?.invalid">{{getErrorMessage()}}</mat-error>
     </mat-form-field>
     <button mat-raised-button (click)="register()">Register</button>

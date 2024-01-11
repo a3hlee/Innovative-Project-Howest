@@ -3,16 +3,32 @@
 </div>
 
 <div>
-    <h1>Login</h1>
-    <form (submit)="login()">
-        <div>
-            <label for="email">Email:</label>
-            <input type="email" id="loginEmail" />
-        </div>
-        <div>
-            <label for="password">Password:</label>
-            <input type="password" id="loginPassword" />
-        </div>
-        <button type="submit">Login</button>
-    </form>
+    <div class="form">
+        <h1>Register</h1>
+        <mat-form-field>
+            <mat-label for="email">Email:</mat-label>
+            <input matInput type="email" id="registerEmail">
+            <mat-error></mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label for="password">Password:</mat-label>
+            <input matInput type="password" id="registerPassword" />
+        </mat-form-field>
+        <button mat-raised-button (click)="register()">Register</button>
+    </div>
+    <div *ngIf="isRegisterSuccess" class="success">
+        <p>Register success!</p>
+    </div>
+    <div class="form">
+        <h1>Login</h1>
+        <mat-form-field>
+            <mat-label for="email">Email:</mat-label>
+            <input matInput type="email" id="loginEmail">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label for="password">Password:</mat-label>
+            <input matInput type="password" id="loginPassword" />
+        </mat-form-field>
+        <button mat-raised-button (click)="login()">Login</button>
+    </div>
 </div>
