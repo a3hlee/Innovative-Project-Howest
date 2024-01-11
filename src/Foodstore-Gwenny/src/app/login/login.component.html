@@ -1,0 +1,18 @@
+<div *ngIf="isLoading">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div>
+    <h1>Login</h1>
+    <form (submit)="login()">
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="loginEmail" />
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="loginPassword" />
+        </div>
+        <button type="submit">Login</button>
+    </form>
+</div>

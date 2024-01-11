@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { ReactiveFormsModule } from "@angular/forms";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 
 @Component({
@@ -114,7 +113,6 @@ export class SettingsAdminComponent implements OnInit {
   //   this.dialog.open(DeleteCategoryComponent, {
   //     width: '250px',
   //   });
-
   //     this.message = '';
   //     this.findForm.reset();
     

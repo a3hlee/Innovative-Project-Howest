@@ -13,12 +13,8 @@ export class DeleteCategoryComponent {
   constructor(public dialogRef: MatDialogRef<DeleteCategoryComponent>, private db: AngularFirestore) {}
 
   delete() {
-    this.db.collection('categories').doc(this.id).delete()
-    .then(res => {
+    this.db.collection('categories').doc(this.id).delete();
       this.dialogRef.close();
-    })
-    .catch(e => {
-      console.log(e);
-    });
+      
   }
 }
