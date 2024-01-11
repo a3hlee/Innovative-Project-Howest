@@ -19,8 +19,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { SettingsAdminComponent } from './settings-admin/settings-admin.component';
 import { DeleteCategoryComponent } from './dialogs/delete-category/delete-category.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login-register/login-register.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +31,6 @@ import { RegisterComponent } from './register/register.component';
     SettingsAdminComponent,
     DeleteCategoryComponent,
     LoginComponent,
-    RegisterComponent,
   ],
   imports: [
     BrowserModule,

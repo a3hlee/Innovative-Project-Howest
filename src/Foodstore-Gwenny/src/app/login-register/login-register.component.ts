@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  templateUrl: './login-register.component.html',
+  styleUrls: ['./login-register.component.css']
 })
 export class LoginComponent {
   isLoading = false;
