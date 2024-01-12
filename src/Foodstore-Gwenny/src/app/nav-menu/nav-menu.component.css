@@ -15,7 +15,7 @@ mat-toolbar {
 
   a {
     color: white;
-    font-weight: bold;
+    /* font-weight: bold; */
     text-decoration: none;
   }
   

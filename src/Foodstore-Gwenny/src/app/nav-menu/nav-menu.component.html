@@ -1,13 +1,32 @@
-<mat-toolbar color="primary">
-    <span><a href="/">Foodstore Gwenny</a></span>
+<h1>
+  <mat-toolbar color="primary">
+    <a routerLink="/">Foodstore Gwenny</a>
     <span class="spacer"></span>
     <button mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon>menu</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-        <button mat-menu-item routerLink="/">Home</button>
-        <button mat-menu-item routerLink="/test">Test</button>
-        <button mat-menu-item routerLink="/categories">Categories</button>
-        <button mat-menu-item routerLink="/settings">Settings</button>
+        <button mat-menu-item routerLink="/">
+            <mat-icon>home</mat-icon>
+            Home
+        </button>
+        <button mat-menu-item routerLink="/test">
+            <mat-icon>bug_report</mat-icon>
+            Test
+        </button>
+        <button mat-menu-item routerLink="/categories">
+            <mat-icon>category</mat-icon>
+            Categories
+        </button>
+        <button mat-menu-item routerLink="/settings">
+            <mat-icon>admin_panel_settings</mat-icon>
+            Settings
+        </button>
     </mat-menu>
+    <button mat-icon-button aria-label="Checkout" routerLink="/test">
+        <mat-icon class="material-icons-outlined">
+        shopping_bag
+    </mat-icon>
+    </button>
 </mat-toolbar>
+</h1>
