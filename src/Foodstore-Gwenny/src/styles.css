@@ -12,6 +12,48 @@ body { margin: 0; font-family: "Calibri", sans-serif }
     align-items: flex-start;
 }
 
+.mat-mdc-card-subtitle {
+    font-size: 13px !important;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.mat-mdc-form-field {
+    width: 100% !important;
+    margin-top: 10px !important;
+}
+
+.mat-mdc-card {
+    box-shadow: 1px 2px 7px 2px rgba(133, 133, 133, 0.68) !important;
+    border-radius: 9px !important;
+    padding: 10px 25px !important;
+}
+
+.signup-in {
+    width: 100% !important;
+    border-radius: 9px !important;
+}
+
+.card-buttons {
+    display: flex;
+    flex-flow: column wrap;
+    width: 100%;
+}
+
+.account-button {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 0 12px 0 12px;
+}
+
 button {
     font-weight: bold !important;
     font-family: "Calibri", sans-serif !important;

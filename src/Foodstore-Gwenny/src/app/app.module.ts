@@ -20,6 +20,7 @@ import { HomeComponent } from './home/home.component';
 import { SettingsAdminComponent } from './settings-admin/settings-admin.component';
 import { VerificationComponent } from './verification/verification.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     SettingsAdminComponent,
     VerificationComponent,
     SignUpComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
