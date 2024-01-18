@@ -18,6 +18,7 @@ import { CategoriesListComponent } from './categories/categories-list/categories
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { SettingsAdminComponent } from './settings-admin/settings-admin.component';
+import { VerificationComponent } from './verification/verification.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { SettingsAdminComponent } from './settings-admin/settings-admin.componen
     NavMenuComponent,
     HomeComponent,
     SettingsAdminComponent,
+    VerificationComponent,
   ],
   imports: [
     BrowserModule,
