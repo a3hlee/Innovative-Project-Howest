@@ -6,6 +6,8 @@ import { HomeComponent } from './home/home.component';
 import { SettingsAdminComponent } from './settings-admin/settings-admin.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { LoginComponent } from './login/login.component';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
+import { VerificationComponent } from './verification/verification.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -14,6 +16,8 @@ const routes: Routes = [
   { path: 'settings', component: SettingsAdminComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'password-reset', component: PasswordResetComponent },
+  { path: 'verification', component: VerificationComponent },
 ];
 
 @NgModule({

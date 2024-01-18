@@ -30,12 +30,10 @@ export class AuthService {
     this.afAuth.createUserWithEmailAndPassword(email, password)
       .then((result) => {
         result.user?.sendEmailVerification();
-        this.openSnackBar('❗Please check your email for verification.', 'OK!');
-        this.router.navigate(['/verification']);
-
         if (!result.user?.emailVerified) {
-          this.openSnackBar('🛑Please verify your email first.', 'OK!');
+          this.openSnackBar('❗Please check your email for verification.', 'OK!');
           this.logout();
+          this.router.navigate(['/verification']);
         } else {
           this.isLoggedIn = true;
           this.openSnackBar('✅Successfully registered!', 'Nice!');
@@ -59,7 +57,7 @@ export class AuthService {
           this.openSnackBar('🛑Please verify your email first.', 'OK!');
           this.logout();
         } else {
-          if (result.user?.uid === 'gUA0KOf1zQhf3FoH6XiWjyfYWDw2') {
+          if (result.user?.uid === 'fVDArFvFtTSI7J7Qt8dogNOumrI2') {
             this.isAdmin = true;
           }
           this.isLoggedIn = true;

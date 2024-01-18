@@ -1,37 +1,49 @@
 <h1>
-  <mat-toolbar color="primary">
-    <a routerLink="/">Foodstore Gwenny</a>
-    <span class="spacer"></span>
-    <button mat-icon-button [matMenuTriggerFor]="menu">
-        <mat-icon>menu</mat-icon>
-    </button>
-    <mat-menu #menu="matMenu">
-        <button mat-menu-item routerLink="/">
-            <mat-icon>home</mat-icon>
-            Home
+    <mat-toolbar color="primary">
+        <a routerLink="/">Foodstore Gwenny</a>
+        <span class="spacer"></span>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>menu</mat-icon>
         </button>
-        <button mat-menu-item routerLink="/test">
-            <mat-icon>bug_report</mat-icon>
-            Test
+        <mat-menu #menu="matMenu">
+            <div *ngIf="isLoggedIn">
+                <button mat-menu-item routerLink="/">
+                    <mat-icon>home</mat-icon>
+                    Home
+                </button>
+                <button mat-menu-item routerLink="/test">
+                    <mat-icon>bug_report</mat-icon>
+                    Test
+                </button>
+                <button mat-menu-item routerLink="/categories">
+                    <mat-icon>category</mat-icon>
+                    Categories
+                </button>
+                <button *ngIf="isAdmin" mat-menu-item routerLink="/settings">
+                    <mat-icon>admin_panel_settings</mat-icon>
+                    Settings
+                </button>
+            </div>
+            <div *ngIf="!isLoggedIn">
+                <button mat-menu-item routerLink="/login">
+                    <mat-icon>login</mat-icon>
+                    Login
+                </button>
+                <button mat-menu-item routerLink="/sign-up">
+                    <mat-icon>person_add</mat-icon>
+                    Sign Up
+                </button>
+            </div>
+        </mat-menu>
+        <button mat-icon-button aria-label="Checkout" routerLink="/test">
+            <mat-icon class="material-icons-outlined">
+                shopping_bag
+            </mat-icon>
         </button>
-        <button mat-menu-item routerLink="/categories">
-            <mat-icon>category</mat-icon>
-            Categories
+        <button mat-icon-button (click)="logout()">
+            <mat-icon class="material-icons-outlined">
+                logout
+            </mat-icon>
         </button>
-        <button *ngIf="isAdmin" mat-menu-item routerLink="/settings">
-            <mat-icon>admin_panel_settings</mat-icon>
-            Settings
-        </button>
-    </mat-menu>
-    <button mat-icon-button aria-label="Checkout" routerLink="/test">
-        <mat-icon class="material-icons-outlined">
-        shopping_bag
-    </mat-icon>
-    </button>
-    <button mat-icon-button (click)="logout()">
-        <mat-icon class="material-icons-outlined">
-            logout
-    </mat-icon>
-    </button>
-</mat-toolbar>
+    </mat-toolbar>
 </h1>

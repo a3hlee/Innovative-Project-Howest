@@ -5,6 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './verification.component.html',
   styleUrls: ['./verification.component.css']
 })
-export class VerificationComponent {
-
-}
+export class VerificationComponent {}
