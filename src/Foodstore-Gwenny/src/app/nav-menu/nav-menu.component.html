@@ -18,7 +18,7 @@
             <mat-icon>category</mat-icon>
             Categories
         </button>
-        <button mat-menu-item routerLink="/settings">
+        <button *ngIf="isAdmin" mat-menu-item routerLink="/settings">
             <mat-icon>admin_panel_settings</mat-icon>
             Settings
         </button>
@@ -26,6 +26,11 @@
     <button mat-icon-button aria-label="Checkout" routerLink="/test">
         <mat-icon class="material-icons-outlined">
         shopping_bag
+    </mat-icon>
+    </button>
+    <button mat-icon-button (click)="logout()">
+        <mat-icon class="material-icons-outlined">
+            logout
     </mat-icon>
     </button>
 </mat-toolbar>

@@ -1,5 +1,17 @@
 <div class="home-container">
-    <img src="assets/images/Logo-clear.png" alt="logo" class="logo" />
-    <h2>Welcome to My App!</h2>
-    <p>This is the home page content. Feel free to customize it.</p>
+    <div *ngIf="!isLoggedIn">
+        <p>
+            You are not logged in. <br>
+            Please login or register to access the app.
+        </p>
+        <button mat-raised-button color="primary" routerLink="/login">Login</button>
+        <button mat-raised-button color="primary" routerLink="/sign-up">Register</button>
+    </div>
+    <div *ngIf="isLoggedIn">
+        <img src="assets/images/Logo-clear.png" alt="logo" class="logo" />
+        <h2>Welcome to My App!</h2>
+        <p>This is the home page content. Feel free to customize it.</p>
+        <button mat-raised-button color="primary" (click)="logout()">Logout</button>
+    </div>
 </div>
+

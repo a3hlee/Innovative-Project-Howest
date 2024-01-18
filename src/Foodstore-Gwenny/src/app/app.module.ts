@@ -21,6 +21,7 @@ import { SettingsAdminComponent } from './settings-admin/settings-admin.componen
 import { VerificationComponent } from './verification/verification.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { LoginComponent } from './login/login.component';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { LoginComponent } from './login/login.component';
     VerificationComponent,
     SignUpComponent,
     LoginComponent,
+    PasswordResetComponent,
   ],
   imports: [
     BrowserModule,

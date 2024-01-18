@@ -1,1 +1,39 @@
-<p>login works!</p>
+<div *ngIf="!isLoggedIn" class="flex">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                <h2>LOGIN</h2>
+            </mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content class="form">
+            <mat-form-field appearance="outline" class="auth-forms">
+                <mat-label for="email">Email:</mat-label>
+                <input matInput placeholder="example@gmail.com" [(ngModel)]="email" name="email" required>
+                <mat-error>Email is required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="auth-forms">
+                <mat-label for="password">Password:</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" placeholder="Password" [(ngModel)]="password"
+                    name="password" required>
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error>Password is required</mat-error>
+            </mat-form-field>
+        </mat-card-content>
+        
+        <mat-card-actions>
+            <div class="card-buttons">
+                <button mat-raised-button color="primary" (click)="login()" class="signup-in">LOGIN</button>
+                <a mat-button href="/password-reset">Forgot Password?</a>
+                <div class="account-button">
+                    <p>Need an account?</p>
+                    <a mat-button routerLink="/sign-up">SIGN UP</a>
+                </div>
+            </div>
+        </mat-card-actions>
+    </mat-card>
+</div>
