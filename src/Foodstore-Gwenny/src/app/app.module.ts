@@ -19,6 +19,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { SettingsAdminComponent } from './settings-admin/settings-admin.component';
 import { VerificationComponent } from './verification/verification.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { VerificationComponent } from './verification/verification.component';
     HomeComponent,
     SettingsAdminComponent,
     VerificationComponent,
+    SignUpComponent,
   ],
   imports: [
     BrowserModule,
