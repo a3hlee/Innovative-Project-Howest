@@ -10,6 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class ProductService implements OnInit {
   products: any[] = [];
+  categories: any[] = [];
   product: any;
   id: string = '';
 
@@ -45,7 +46,18 @@ export class ProductService implements OnInit {
       })
     );
   }
-  
+
+  getCategories() {
+    return this.db.collection('categories').snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data() as any;
+          this.id = a.payload.doc.id;
+          return { id: this.id, ...data };
+        });
+      })
+    );
+  }  
 
   addProduct(product: any) {
     let productName = product.name;

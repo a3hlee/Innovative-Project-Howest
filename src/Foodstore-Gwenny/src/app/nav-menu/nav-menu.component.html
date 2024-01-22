@@ -15,6 +15,10 @@
                     <mat-icon>admin_panel_settings</mat-icon>
                     Settings
                 </button>
+                <button mat-menu-item routerLink="/products">
+                    <mat-icon>shop</mat-icon>
+                    Products
+                </button>
             </div>
             <div *ngIf="!isLoggedIn">
                 <button mat-menu-item routerLink="/login">
@@ -27,7 +31,7 @@
                 </button>
             </div>
         </mat-menu>
-        <button mat-icon-button aria-label="Checkout" routerLink="/test">
+        <button mat-icon-button aria-label="Checkout" routerLink="/cart">
             <mat-icon class="material-icons-outlined">
                 shopping_bag
             </mat-icon>

@@ -1,1 +1,29 @@
-<p>product works!</p>
+<div class="product-list">
+    <mat-card *ngFor="let product of products" class="product-card">
+        <img *ngIf="product.imageUrl" [src]="product.imageUrl" alt="Product Image" class="image" />
+        <mat-card-header>
+            <mat-card-title>
+                <h3>
+                    <a [title]="product.name + ' details'">
+                        {{ product.name | titlecase }}
+                    </a>
+                </h3>
+            </mat-card-title>
+            <mat-card-subtitle *ngIf="product.category">
+                {{ product.category }}
+            </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <p *ngIf="product.description">
+                Description: {{ product.description }}
+            </p>
+            <h4>
+                Price: €{{ product.price }}
+            </h4>
+        </mat-card-content>
+        <mat-card-actions>
+            <button (click)="addToCart(product)">Buy</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
+

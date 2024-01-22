@@ -1,49 +1,71 @@
-<mat-tab-group mat-align-tabs="start">
-    <mat-tab label="Categories">
-        <ul>
-            <li *ngFor='let category of categories'>
-                {{ category.Name }}
-            </li>
-        </ul>
+<mat-table [dataSource]="products" class="mat-elevation-z8">
+    <!-- Column definitions -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+      <mat-cell *matCellDef="let product">
+        <a [title]="product.name + ' details'">{{ product.name | titlecase }}</a>
+      </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="category">
+      <mat-header-cell *matHeaderCellDef>Category</mat-header-cell>
+      <mat-cell *matCellDef="let product">{{ product.category }}</mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="imageUrl">
+      <mat-header-cell *matHeaderCellDef>Image</mat-header-cell>
+      <mat-cell *matCellDef="let product">
+        <img *ngIf="product.imageUrl" [src]="product.imageUrl" alt="Product Image" class="table-image" />
+      </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="description">
+      <mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
+      <mat-cell *matCellDef="let product">{{ product.description }}</mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="price">
+      <mat-header-cell *matHeaderCellDef>Price</mat-header-cell>
+      <mat-cell *matCellDef="let product">€{{ product.price }}</mat-cell>
+    </ng-container>
 
-        <h2>Add:</h2>
-        <div class="form">
-            <mat-form-field [formGroup]="addForm">
-                <mat-label for="name">Name:</mat-label>
-                <input matInput formControlName="name" type="text">
-                <mat-error *ngIf="addForm.get('name')?.invalid">{{getErrorMessage()}}</mat-error>
-            </mat-form-field>
-            <button mat-raised-button color="primary" (click)="onSubmit()">Submit</button>
-        </div>
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+      <mat-cell *matCellDef="let product">
+        <!-- <button mat-icon-button color="primary" (click)="editItem(product)">
+          <mat-icon>edit</mat-icon>
+        </button> -->
+        <button mat-icon-button color="warn" (click)="deleteItem()">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+  
+    <!-- Table rows -->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
 
-        <h2>Find:</h2>
-        <div>
-            <mat-form-field [formGroup]="this.findForm">
-                <input matInput placeholder="Name" formControlName="getValue" type="text" [matAutocomplete]="auto" />
-            </mat-form-field>
-            <mat-autocomplete #auto="matAutocomplete">
-                <mat-option *ngFor='let category of categories' [value]="category.Name">
-                    {{ category.Name }}
-                </mat-option>
-            </mat-autocomplete>
-            <button mat-raised-button color="primary" (click)="onQuery()">Find</button>
-        </div>
+<div class="form">
+    <input type="file" (change)="onFileSelected($event)" />
+    <img *ngIf="imageUrl" [src]="imageUrl" alt="Uploaded Image" class="add-image" />
+    <label for="name">Name</label>
+    <input type="text" [(ngModel)]="productName" required />
+    <label for="description">Description</label>
+    <input type="text" [(ngModel)]="productDescription" />
+    <label for="price">Price</label>
+    <input type="number" [(ngModel)]="productPrice" />
+    <label for="category">Category</label>
+    <input type="text" [(ngModel)]="productCategory" />
+    <button (click)="saveItem()">Save Item</button>
+</div>
 
-        <p style="color: red;">{{message || null}}</p>
 
-        <div *ngIf="single">
-            <h3>{{single.Name}}</h3>
-            <button mat-raised-button color="accent" (click)='openEdit()'>Edit</button>
-            <button mat-raised-button color="warn" (click)=' openDelete()'>Delete</button>
-        </div>
-
-        <div *ngIf="edit">
-            <mat-form-field [formGroup]="this.editForm">
-                <input matInput placeholder={{single.Name}} formControlName="editValue" type="text" />
-            </mat-form-field>
-            <button mat-raised-button color="accent" (click)="onEdit()">Rename</button>
-        </div>
-
-        <p style="color: red;">{{editMessage || null}}</p>
-    </mat-tab>
-</mat-tab-group>
+<mat-form-field>
+    <mat-label>Favorite food</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let category of categories" [value]="category.name">
+        {{ category.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
