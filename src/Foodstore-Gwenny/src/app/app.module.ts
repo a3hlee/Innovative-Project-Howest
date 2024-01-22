@@ -12,9 +12,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { environment } from '../environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
-import { TestingComponent } from './testing/testing.component';
 import { ReactiveFormsModule } from "@angular/forms";
-import { CategoriesListComponent } from './categories/categories-list/categories-list.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { SettingsAdminComponent } from './settings-admin/settings-admin.component';
@@ -26,8 +24,6 @@ import { PasswordResetComponent } from './password-reset/password-reset.componen
 @NgModule({
   declarations: [
     AppComponent,
-    TestingComponent,
-    CategoriesListComponent,
     NavMenuComponent,
     HomeComponent,
     SettingsAdminComponent,

@@ -7,6 +7,8 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./nav-menu.component.css']
 })
 export class NavMenuComponent {
+  email: any;
+
   get isLoggedIn(): boolean | undefined {
     return this.authService.isLoggedIn;
   }

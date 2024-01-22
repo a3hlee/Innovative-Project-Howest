@@ -10,14 +10,24 @@ export class AuthService {
   isLoggedIn: boolean | undefined;
   isAdmin: boolean = false;
 
-  constructor(private afAuth: AngularFireAuth, private snackBar: MatSnackBar, private router: Router) {
+  constructor(
+    private afAuth: AngularFireAuth,
+    private snackBar: MatSnackBar,
+    private router: Router
+  ) {
     this.afAuth.authState.subscribe((user) => {
       if (user) {
         this.isLoggedIn = true;
+        this.checkAdminStatus(user.uid);
       } else {
         this.isLoggedIn = false;
+        this.isAdmin = false;
       }
     });
+  }
+
+  private checkAdminStatus(uid: string) {
+    this.isAdmin = uid === 'fVDArFvFtTSI7J7Qt8dogNOumrI2';
   }
 
   openSnackBar(message: string, action: string) {
@@ -57,9 +67,7 @@ export class AuthService {
           this.openSnackBar('🛑Please verify your email first.', 'OK!');
           this.logout();
         } else {
-          if (result.user?.uid === 'fVDArFvFtTSI7J7Qt8dogNOumrI2') {
-            this.isAdmin = true;
-          }
+          this.checkAdminStatus(result.user?.uid || '');
           this.isLoggedIn = true;
           this.openSnackBar('✅Successfully logged in!', 'Nice!');
           this.router.navigate(['/']);
@@ -77,6 +85,8 @@ export class AuthService {
           this.openSnackBar('🔑Missing password. Please enter a password.', 'OK!');
         } else if (error.code === 'auth/missing-email') {
           this.openSnackBar('❗Missing email. Please enter an email.', 'OK!');
+        } else if (error.code === 'auth/invalid-login-credentials') {
+          this.openSnackBar('❌Invalid credentials. Please register or check values.', 'OK!');
         }
         else {
           this.openSnackBar(error.message, 'Oh no!');

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-settings-admin',
@@ -23,12 +25,16 @@ export class SettingsAdminComponent implements OnInit {
   editMessage: string = '';
   editForm = new FormGroup({ editValue: new FormControl('') })
 
-  constructor(private db: AngularFirestore) { }
+  constructor(private db: AngularFirestore, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-  const collectionRef = this.db.collection('categories');
-  const collectionInstance = collectionRef.valueChanges();
-  collectionInstance.subscribe(ss => this.categories = ss);
+    this.getCollection();
+  }
+
+  getCollection() {
+    const collectionRef = this.db.collection('categories');
+    const collectionInstance = collectionRef.valueChanges();
+    collectionInstance.subscribe(ss => this.categories = ss);
   }
 
   onSubmit() {
@@ -108,15 +114,4 @@ export class SettingsAdminComponent implements OnInit {
         this.single = null;
     }
   }
-
-  // openDelete() {
-  //   this.dialog.open(DeleteCategoryComponent, {
-  //     width: '250px',
-  //   });
-  //     this.message = '';
-  //     this.findForm.reset();
-    
-  //     this.edit = false;
-  //     this.single = null;
-  // }
 }

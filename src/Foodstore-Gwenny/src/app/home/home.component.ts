@@ -14,6 +14,10 @@ export class HomeComponent {
     return this.authService.isLoggedIn;
   }
 
+  get isAdmin(): boolean | undefined {
+    return this.authService.isAdmin;
+  }
+
   constructor(private authService: AuthService) { }
 
   logout() {
