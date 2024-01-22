@@ -1,7 +1,8 @@
 import { Injectable, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Observable, map } from 'rxjs';
+import { map } from 'rxjs';
 import { AuthService } from './auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -15,10 +16,20 @@ export class CartService implements OnInit {
   price!: number;
   totalItemPrice!: number;
 
-  constructor(private firestore: AngularFirestore, private authService: AuthService) { }
+  constructor(
+    private firestore: AngularFirestore, 
+    private authService: AuthService,
+    private snackBar: MatSnackBar,
+    ) { }
 
   ngOnInit(): void {
     this.getItems();
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 3000,
+    });
   }
 
   addToCart(product: any) {
@@ -79,15 +90,15 @@ export class CartService implements OnInit {
     this.authService.getUid().then(() => {
       this.userId = this.authService.userId;
       let productName = product.name;
-  
+
       this.firestore.collection('carts').ref.where('name', '==', productName).get().then((snapshot) => {
         if (snapshot.empty) {
-          alert('Product not found in cart');
+          this.openSnackBar('❗Product not found in cart', 'OK!');
         } else {
           snapshot.forEach(doc => {
             const amount = (doc.data() as any).amount;
             const updatedAmount = Math.max(0, amount + operator);
-  
+
             if (updatedAmount === 0) {
               // If the updated amount is 0, remove the product from the collection
               this.firestore.collection('carts').doc(doc.id).delete();

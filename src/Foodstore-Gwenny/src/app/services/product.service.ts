@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Observable, map } from 'rxjs';
 import { AuthService } from './auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +17,21 @@ export class ProductService implements OnInit {
     return this.authService.isAdmin;
   }
 
-  constructor(private db: AngularFirestore, private storage: AngularFireStorage, private authService: AuthService) { }
+  constructor(
+    private db: AngularFirestore, 
+    private storage: AngularFireStorage, 
+    private authService: AuthService,
+    private snackBar: MatSnackBar,
+    ) { }
 
   ngOnInit(): void {
     this.getProducts();
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 3000,
+    });
   }
 
   getProducts() {
@@ -42,7 +54,7 @@ export class ProductService implements OnInit {
       if (snapshot.empty) {
         this.db.collection('products').add(product);
       } else {
-        alert('Product already exists');
+        this.openSnackBar('❗Product already exists.', 'OK!');
       }
     }
     );

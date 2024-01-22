@@ -20,6 +20,7 @@ import { VerificationComponent } from './verification/verification.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { LoginComponent } from './login/login.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { PasswordResetComponent } from './password-reset/password-reset.componen
     SignUpComponent,
     LoginComponent,
     PasswordResetComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,

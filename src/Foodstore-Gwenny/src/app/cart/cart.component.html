@@ -1,0 +1,56 @@
+<a (click)="clear()" mat-button>Clear</a>
+
+<h2 *ngIf="items.length === 0" class="empty">Your cart is empty!</h2>
+
+<mat-table [dataSource]="items" class="mat-elevation-z3">
+    <ng-container matColumnDef="imageUrl">
+        <mat-header-cell *matHeaderCellDef>Image</mat-header-cell>
+        <mat-cell *matCellDef="let item">
+            <img *ngIf="item.imageUrl" [src]="item.imageUrl" alt="Product Image" class="table-image" />
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+        <mat-cell *matCellDef="let item">{{ item.name | titlecase }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="amount">
+        <mat-header-cell *matHeaderCellDef>Amount</mat-header-cell>
+        <mat-cell *matCellDef="let item">
+            {{ item.amount }}
+            <div class="buttons-flex">
+                <button mat-icon-button (click)="addOne(item)">
+                    <mat-icon>keyboard_arrow_up</mat-icon>
+                </button>
+                <button mat-icon-button (click)="removeOne(item)">
+                    <mat-icon>keyboard_arrow_down</mat-icon>
+                </button>
+            </div>
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef>Price</mat-header-cell>
+        <mat-cell *matCellDef="let item">{{ item.price | currency:'EUR' }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="totalItemPrice">
+        <mat-header-cell *matHeaderCellDef>Total</mat-header-cell>
+        <mat-cell *matCellDef="let item">{{ item.price * item.amount | currency:'EUR' }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let item">
+            <button mat-icon-button (click)="removeItem()">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+
+<button mat-raised-button color="accent" routerLink="/products"><b>Continue shopping</b></button>
