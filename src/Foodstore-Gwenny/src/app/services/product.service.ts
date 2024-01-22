@@ -13,6 +13,7 @@ export class ProductService implements OnInit {
   categories: any[] = [];
   product: any;
   id: string = '';
+  categoryId: string = '';
 
   get isAdmin(): boolean | undefined {
     return this.authService.isAdmin;
@@ -35,6 +36,19 @@ export class ProductService implements OnInit {
     });
   }
 
+  findProduct(id: string): Observable<any> {
+    return this.db.collection('products').doc(id).snapshotChanges().pipe(
+      map(doc => {
+        if (doc.payload.exists) {
+          const data = doc.payload.data() as any;
+          this.id = doc.payload.id;
+          return { id: this.id, ...data };
+        }
+        return null;
+      })
+    );
+  }
+
   getProducts() {
     return this.db.collection('products').snapshotChanges().pipe(
       map(actions => {
@@ -46,18 +60,6 @@ export class ProductService implements OnInit {
       })
     );
   }
-
-  getCategories() {
-    return this.db.collection('categories').snapshotChanges().pipe(
-      map(actions => {
-        return actions.map(a => {
-          const data = a.payload.doc.data() as any;
-          this.id = a.payload.doc.id;
-          return { id: this.id, ...data };
-        });
-      })
-    );
-  }  
 
   addProduct(product: any) {
     let productName = product.name;
@@ -82,9 +84,36 @@ export class ProductService implements OnInit {
     return this.db.collection('products').doc(this.id).delete();
   }
 
-  // getProduct(id: any) {
-  //   return this.db.collection('products').doc(id).get();
-  // }
+  getCategories() {
+    return this.db.collection('categories').snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data() as any;
+          this.categoryId = a.payload.doc.id;
+          return { id: this.categoryId, ...data };
+        });
+      })
+    );
+  }
+
+  addCategory(category: any) {
+    let categoryName = category.name;
+
+    const collection = this.db.collection('categories').ref.where('name', '==', categoryName).get().then((snapshot) => {
+      if (snapshot.empty) {
+        this.db.collection('categories').add(category);
+      } else {
+        this.openSnackBar('❗Category already exists.', 'OK!');
+      }
+    }
+    );
+
+    return collection;
+  }
+
+  deleteCategory() {
+    return this.db.collection('categories').doc(this.categoryId).delete();
+  }
 
   uploadFile(file: File, path: string): Observable<string> {
     const storageRef = this.storage.ref(path);

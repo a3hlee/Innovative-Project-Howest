@@ -15,14 +15,15 @@
         </mat-card-header>
         <mat-card-content>
             <p *ngIf="product.description">
-                Description: {{ product.description }}
+                Description:
             </p>
+            <p>{{ product.description }}</p>
             <h4>
                 Price: €{{ product.price }}
             </h4>
         </mat-card-content>
         <mat-card-actions>
-            <button (click)="addToCart(product)">Buy</button>
+            <button mat-raised-button color="accent" (click)="addToCart(product)">Buy</button>
         </mat-card-actions>
     </mat-card>
 </div>

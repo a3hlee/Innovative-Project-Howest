@@ -71,10 +71,11 @@ button {
     border: solid 1.5px rgba(188, 188, 188, 0.68) !important;
     padding: 0 10px 5px 10px !important;
     margin: 10px 0 !important;
+    width: 15em !important;
 }
 
 .image {
-    width: 10em;
+    width: 13em;
     display: block;
     margin: 10px auto 0 auto;
 }

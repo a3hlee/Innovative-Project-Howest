@@ -1,71 +1,130 @@
-<mat-table [dataSource]="products" class="mat-elevation-z8">
-    <!-- Column definitions -->
-    <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
-      <mat-cell *matCellDef="let product">
-        <a [title]="product.name + ' details'">{{ product.name | titlecase }}</a>
-      </mat-cell>
-    </ng-container>
-  
-    <ng-container matColumnDef="category">
-      <mat-header-cell *matHeaderCellDef>Category</mat-header-cell>
-      <mat-cell *matCellDef="let product">{{ product.category }}</mat-cell>
-    </ng-container>
-  
-    <ng-container matColumnDef="imageUrl">
-      <mat-header-cell *matHeaderCellDef>Image</mat-header-cell>
-      <mat-cell *matCellDef="let product">
-        <img *ngIf="product.imageUrl" [src]="product.imageUrl" alt="Product Image" class="table-image" />
-      </mat-cell>
-    </ng-container>
-  
-    <ng-container matColumnDef="description">
-      <mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
-      <mat-cell *matCellDef="let product">{{ product.description }}</mat-cell>
-    </ng-container>
-  
-    <ng-container matColumnDef="price">
-      <mat-header-cell *matHeaderCellDef>Price</mat-header-cell>
-      <mat-cell *matCellDef="let product">€{{ product.price }}</mat-cell>
-    </ng-container>
+<mat-tab-group>
+    <mat-tab label="Products">
+        <mat-table [dataSource]="products" class="mat-elevation-z8" matSort>
+            <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">Name</mat-header-cell>
+                <mat-cell *matCellDef="let product">
+                    <a [title]="product.name + ' details'">{{ product.name | titlecase }}</a>
+                </mat-cell>
+            </ng-container>
 
-    <ng-container matColumnDef="actions">
-      <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
-      <mat-cell *matCellDef="let product">
-        <!-- <button mat-icon-button color="primary" (click)="editItem(product)">
-          <mat-icon>edit</mat-icon>
-        </button> -->
-        <button mat-icon-button color="warn" (click)="deleteItem()">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </mat-cell>
-    </ng-container>
-  
-    <!-- Table rows -->
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </mat-table>
+            <ng-container matColumnDef="category">
+                <mat-header-cell *matHeaderCellDef>Category</mat-header-cell>
+                <mat-cell *matCellDef="let product">{{ product.category }}</mat-cell>
+            </ng-container>
 
-<div class="form">
-    <input type="file" (change)="onFileSelected($event)" />
-    <img *ngIf="imageUrl" [src]="imageUrl" alt="Uploaded Image" class="add-image" />
-    <label for="name">Name</label>
-    <input type="text" [(ngModel)]="productName" required />
-    <label for="description">Description</label>
-    <input type="text" [(ngModel)]="productDescription" />
-    <label for="price">Price</label>
-    <input type="number" [(ngModel)]="productPrice" />
-    <label for="category">Category</label>
-    <input type="text" [(ngModel)]="productCategory" />
-    <button (click)="saveItem()">Save Item</button>
-</div>
+            <ng-container matColumnDef="imageUrl">
+                <mat-header-cell *matHeaderCellDef>Image</mat-header-cell>
+                <mat-cell *matCellDef="let product">
+                    <img *ngIf="product.imageUrl" [src]="product.imageUrl" alt="Product Image" class="table-image" />
+                </mat-cell>
+            </ng-container>
 
+            <ng-container matColumnDef="description">
+                <mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
+                <mat-cell *matCellDef="let product">{{ product.description }}</mat-cell>
+            </ng-container>
 
-<mat-form-field>
-    <mat-label>Favorite food</mat-label>
-    <mat-select>
-      <mat-option *ngFor="let category of categories" [value]="category.name">
-        {{ category.name }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+            <ng-container matColumnDef="price">
+                <mat-header-cell *matHeaderCellDef>Price</mat-header-cell>
+                <mat-cell *matCellDef="let product">€{{ product.price }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+                <mat-cell *matCellDef="let product">
+                    <!-- <button mat-icon-button color="primary" (click)="editItem(product)">
+                  <mat-icon>edit</mat-icon>
+                </button> -->
+                    <button mat-icon-button color="warn" (click)="deleteItem()">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+        showFirstLastButtons
+        aria-label="Select page of products">
+</mat-paginator>
+    </mat-tab>
+    <mat-tab label="Add product">
+        <div class="flex">
+            <mat-card class="product-card">
+                <mat-card-header>
+                    <mat-card-title>
+                        <h3>Add a product</h3>
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="form">
+                        <input type="file" (change)="onFileSelected($event)" />
+                        <img *ngIf="imageUrl" [src]="imageUrl" alt="Uploaded Image" class="add-image" />
+                        <mat-form-field>
+                            <mat-label>Name</mat-label>
+                            <input matInput type="text" [(ngModel)]="productName" required>
+                            <mat-error>Name is required</mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Description</mat-label>
+                            <textarea matInput placeholder="Ex. Allergens, more info..."
+                                [(ngModel)]="productDescription"></textarea>
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Price</mat-label>
+                            <span matPrefix>€ &nbsp;</span>
+                            <input type="number" matInput [(ngModel)]="productPrice" required>
+                            <mat-error>Price is required</mat-error>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Category</mat-label>
+                            <mat-select [(ngModel)]="productCategory">
+                                <mat-option *ngFor="let category of categories" [value]="category.name">
+                                    {{ category.name }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-raised-button color="accent" (click)="saveItem()">Save Item</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </mat-tab>
+    <mat-tab label="Categories">
+        <div class="form">
+            <mat-form-field>
+                <mat-label>Add category</mat-label>
+                <input matInput type="text" [(ngModel)]="productCategory" required>
+                <mat-error>Category is required</mat-error>
+            </mat-form-field>
+            <button mat-raised-button color="accent" (click)="saveCategory()">Save Category</button>
+        </div>
+        <div class="flex">
+            <mat-table [dataSource]="categories" class="mat-elevation-z4">
+                <ng-container matColumnDef="name">
+                    <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+                    <mat-cell *matCellDef="let category">
+                        {{ category.name | titlecase }}
+                    </mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef="actions">
+                    <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+                    <mat-cell *matCellDef="let category">
+                        <button mat-icon-button color="warn" (click)="deleteCategoryItem()">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </mat-cell>
+                </ng-container>
+                <mat-header-row *matHeaderRowDef="['name', 'actions']"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: ['name', 'actions']"></mat-row>
+            </mat-table>
+        </div>
+        
+    </mat-tab>
+</mat-tab-group>
