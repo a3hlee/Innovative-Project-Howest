@@ -1,4 +1,4 @@
-<div class="home-container">
+<!-- <div class="home-container">
     <div *ngIf="!isLoggedIn">
         <p>
             You are not logged in. <br>
@@ -9,8 +9,40 @@
     </div>
     <div *ngIf="isLoggedIn">
         <img src="assets/images/Logo-clear.png" alt="logo" class="logo" />
-        <h2>Welcome to My App!</h2>
+        <img src="assets/images/automaten.jpg" alt="foodstore" class="foodstore-image" />
+        <h2>Welcome to FoodStore Gwenny, where culinary excellence meets convenience! </h2>
         <p>This is the home page content. Feel free to customize it.</p>
     </div>
 </div>
+ -->
 
+
+ <div class="home-container">
+    <div *ngIf="!isLoggedIn" class="login-container">
+        <p>
+            You are not logged in. <br>
+            Please login or register to access the app.
+        </p>
+        <button mat-raised-button color="primary" routerLink="/login">Login</button>
+        <button mat-raised-button color="primary" routerLink="/sign-up">Register</button>
+    </div>
+    <div *ngIf="isLoggedIn" class="logged-in-container">
+        <img src="assets/images/automaten.jpg" alt="foodstore" class="foodstore-image" />
+        <img src="assets/images/Logo-clear.png" alt="logo" class="logo" />
+        <div class="welcome-text">
+            <h2>Welcome to Foodstore Gwenny!</h2>
+            <p>Where culinary excellence meets convenience!</p>
+        </div>
+        <p class="home-page-content">
+            In august 2022 Gwenny Casier and Kurt Senaeve 
+            (owners of <a href="https://www.vishandel-jonas.be/" target="_blank">"Vishandel Traiteur Jonas"</a>) 
+            had the idea to expand their store, this time a little closer to home. <br>
+            They wanted to create a store where you can buy fresh products and other small items you can easily forget. <br>
+            In February 2023 they opened <i>Foodstore Gwenny</i> in the center of Eernegem. <br>
+            <br>
+            Foodstore Gwenny is a store that is open 24/7 and there are only vending machines. <br>
+            You can find a wide range of products in our store. All these products are homemade in the kitchen of <i>"Vishandel Traiteur Jonas"</i>.<br>
+            Foodstore Gwenny is located at Stationsstraat 305, Eernegem 8480.
+        </p>
+    </div>
+</div>

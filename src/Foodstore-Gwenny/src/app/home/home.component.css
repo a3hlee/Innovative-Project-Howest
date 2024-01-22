@@ -1,7 +1,66 @@
-.home-container {
+/* .home-container {
   padding: 20px;
 }
 
 .logo {
   width: 10%;
+} */
+
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+}
+
+.login-container, .logged-in-container {
+  max-width: 600px;
+}
+
+.login-container p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.logged-in-container {
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  max-width: 60%;
+  margin-bottom: 20px;
+}
+
+.foodstore-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.welcome-text {
+  margin-bottom: 20px;
+}
+
+.welcome-text h2 {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.home-page-content {
+  font-size: 16px;
+  color: #555;
+}
+
+a {
+  color: #812e58;
+  text-decoration: none;
 }

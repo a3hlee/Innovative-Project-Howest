@@ -74,6 +74,12 @@ button {
     width: 15em !important;
 }
 
+.admin-card {
+    border: solid 1.5px rgba(188, 188, 188, 0.68) !important;
+    padding: 0 10px 5px 10px !important;
+    margin: 10px 0 !important;
+}
+
 .image {
     width: 13em;
     display: block;
@@ -85,5 +91,9 @@ button {
 }
 
 .add-image {
+    height: 10em;
+}
+
+.foodstore-image {
     height: 10em;
 }
