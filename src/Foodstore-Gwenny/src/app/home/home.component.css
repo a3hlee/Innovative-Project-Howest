@@ -1,12 +1,3 @@
-/* .home-container {
-  padding: 20px;
-}
-
-.logo {
-  width: 10%;
-} */
-
-
 .home-container {
   display: flex;
   flex-direction: column;
@@ -26,7 +17,7 @@
 }
 
 .logged-in-container {
-  background-color: #f8f8f8;
+  background-color: #f3f3f3;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
