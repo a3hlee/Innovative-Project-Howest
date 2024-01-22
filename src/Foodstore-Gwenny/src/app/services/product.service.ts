@@ -20,11 +20,11 @@ export class ProductService implements OnInit {
   }
 
   constructor(
-    private db: AngularFirestore, 
-    private storage: AngularFireStorage, 
+    private db: AngularFirestore,
+    private storage: AngularFireStorage,
     private authService: AuthService,
     private snackBar: MatSnackBar,
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.getProducts();
@@ -76,8 +76,27 @@ export class ProductService implements OnInit {
     return collection;
   }
 
-  updateProduct(id: any, product: any) {
-    return this.db.collection('products').doc(id).update(product);
+  updateProduct(product: any): Observable<void> {
+    const productDoc = this.db.collection('products').doc(this.id);
+
+    return new Observable<void>((observer) => {
+      productDoc.ref.get().then((docSnapshot) => {
+        if (docSnapshot.exists) {
+          productDoc.update(product)
+            .then(() => {
+              observer.next();
+              observer.complete();
+            })
+            .catch((error) => {
+              console.error('Error updating product:', error);
+              observer.error('Error updating product');
+            });
+        } else {
+          console.error('Product not found');
+          observer.error('Product not found');
+        }
+      });
+    });
   }
 
   deleteProduct() {

@@ -1,8 +1,59 @@
 <mat-tab-group>
     <mat-tab label="Products">
+        <div class="flex" *ngIf="isEdit">
+            <mat-card class="admin-card">
+                <mat-card-header>
+                    <mat-card-title>
+                        <h3>Edit a product</h3>
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="form">
+                        <input type="file" (change)="onFileSelected($event)" />
+                        <img *ngIf="imageUrl" [src]="imageUrl" alt="Uploaded Image" class="add-image" id="imageUrl"
+                            [(ngModel)]="imageUrl" name="imageUrl" />
+                        <mat-form-field>
+                            <mat-label>Name</mat-label>
+                            <input matInput type="text" id="productName" [(ngModel)]="productName" name="productName"
+                                required>
+                            <mat-error>Name is required</mat-error>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Description</mat-label>
+                            <textarea matInput placeholder="Ex. Allergens, more info..." id="productDescription"
+                                [(ngModel)]="productDescription" name="productDescription">
+                            </textarea>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Price</mat-label>
+                            <span matPrefix>€ &nbsp;</span>
+                            <input type="number" matInput id="productPrice" [(ngModel)]="productPrice"
+                                name="productPrice" required>
+                            <mat-error>Price is required</mat-error>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Category</mat-label>
+                            <mat-select id="productCategory" [(ngModel)]="productCategory" name="productCategory">
+                                <mat-option *ngFor="let category of categories" [value]="category.name">
+                                    {{ category.name }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                    </div>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-raised-button color="primary" (click)="isEdit ? updateItem() : saveItem()">
+                        {{ isEdit ? 'Update Product' : 'Save Product' }}
+                    </button>
+                    <button mat-raised-button (click)="resetForm()">Cancel</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
         <mat-table [dataSource]="products" class="mat-elevation-z8" matSort>
             <ng-container matColumnDef="name">
-                <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">Name</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header
+                    sortActionDescription="Sort by name">Name</mat-header-cell>
                 <mat-cell *matCellDef="let product">
                     <a [title]="product.name + ' details'">{{ product.name | titlecase }}</a>
                 </mat-cell>
@@ -33,9 +84,9 @@
             <ng-container matColumnDef="actions">
                 <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
                 <mat-cell *matCellDef="let product">
-                    <!-- <button mat-icon-button color="primary" (click)="editItem(product)">
-                  <mat-icon>edit</mat-icon>
-                </button> -->
+                    <button mat-raised-button color="accent" (click)="openUpdateForm(product)">
+                        Update Product
+                    </button>
                     <button mat-icon-button color="warn" (click)="deleteItem()">
                         <mat-icon>delete</mat-icon>
                     </button>
@@ -46,10 +97,8 @@
             <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
         </mat-table>
 
-        <mat-paginator [pageSizeOptions]="[5, 10, 20]"
-        showFirstLastButtons
-        aria-label="Select page of products">
-</mat-paginator>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of products">
+        </mat-paginator>
     </mat-tab>
     <mat-tab label="Add product">
         <div class="flex">
@@ -68,12 +117,12 @@
                             <input matInput type="text" [(ngModel)]="productName" required>
                             <mat-error>Name is required</mat-error>
                         </mat-form-field>
-                        <mat-form-field class="example-full-width">
+                        <mat-form-field>
                             <mat-label>Description</mat-label>
                             <textarea matInput placeholder="Ex. Allergens, more info..."
                                 [(ngModel)]="productDescription"></textarea>
                         </mat-form-field>
-                        <mat-form-field class="example-full-width">
+                        <mat-form-field>
                             <mat-label>Price</mat-label>
                             <span matPrefix>€ &nbsp;</span>
                             <input type="number" matInput [(ngModel)]="productPrice" required>
@@ -112,7 +161,7 @@
                         {{ category.name | titlecase }}
                     </mat-cell>
                 </ng-container>
-    
+
                 <ng-container matColumnDef="actions">
                     <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
                     <mat-cell *matCellDef="let category">
@@ -125,6 +174,6 @@
                 <mat-row *matRowDef="let row; columns: ['name', 'actions']"></mat-row>
             </mat-table>
         </div>
-        
+
     </mat-tab>
 </mat-tab-group>

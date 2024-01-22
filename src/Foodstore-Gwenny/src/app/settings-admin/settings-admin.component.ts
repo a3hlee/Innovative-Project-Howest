@@ -17,6 +17,9 @@ export class SettingsAdminComponent implements OnInit {
   productCategory: string = '';
   productAmount: number = 1;
 
+  isEdit: boolean = false;
+  selectedProductId: string | null = null;
+
   categories: any[] = [];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -68,6 +71,65 @@ export class SettingsAdminComponent implements OnInit {
         .catch(() => {
           this.productService.openSnackBar('❗Error adding product. Please try again.', 'OK!');
         });
+    } else {
+      this.productService.openSnackBar('❗Please select an image, a valid price, and enter a name.', 'OK!');
+    }
+  }
+
+  openUpdateForm(product: any): void {
+    this.isEdit = true;
+    this.selectedProductId = product.id;
+
+    this.imageUrl = product.imageUrl || '';
+    this.productName = product.name || '';
+    this.productPrice = product.price || 0;
+    this.productDescription = product.description || '';
+    this.productCategory = product.category || '';
+    this.productAmount = product.amount || 1;
+  }
+
+  // ... existing methods
+
+  resetForm(): void {
+    this.isEdit = false;
+    this.selectedProductId = null;
+
+    this.imageUrl = '';
+    this.productName = '';
+    this.productPrice = 0;
+    this.productDescription = '';
+    this.productCategory = '';
+    this.productAmount = 1;
+  }
+
+  updateItem(): void {
+    if (this.imageUrl && this.productName && this.productPrice > 0) {
+      const updatedProduct = {
+        id: this.selectedProductId,
+        name: this.productName,
+        imageUrl: this.imageUrl,
+        price: this.productPrice,
+        description: this.productDescription,
+        category: this.productCategory,
+        amount: this.productAmount
+      };
+
+      this.productService.updateProduct(updatedProduct)
+        .subscribe(
+          () => {
+            this.imageUrl = '';
+            this.productName = '';
+            this.productPrice = 0;
+            this.productDescription = '';
+            this.productCategory = '';
+            this.productService.openSnackBar('✅Successfully updated product!', 'Nice!');
+            this.isEdit = false;
+            this.selectedProductId = null;
+          },
+          () => {
+            this.productService.openSnackBar('❗Error updating product. Please try again.', 'OK!');
+          }
+        );
     } else {
       this.productService.openSnackBar('❗Please select an image, a valid price, and enter a name.', 'OK!');
     }
