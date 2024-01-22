@@ -57,3 +57,11 @@
     <mat-icon>arrow_back</mat-icon>
     Continue shopping
 </button>
+
+<h2>Total: {{ totalPrice | currency:'EUR' }}</h2>
+<h2>Amount of products: {{ totalAmount }}</h2>
+
+<button mat-raised-button color="primary" (click)="checkout()">
+    <mat-icon>shopping_cart</mat-icon>
+    Checkout
+</button>

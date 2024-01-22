@@ -9,7 +9,8 @@ import { CartService } from '../services/cart.service';
 export class CartComponent {
   items: any[] = [];
   amount!: number;
-  totalItemPrice!: number;
+  totalPrice!: number;
+  totalAmount!: number;
 
   displayedColumns: string[] = ['imageUrl', 'name', 'amount', 'price', 'totalItemPrice', 'actions'];
 
@@ -21,12 +22,11 @@ export class CartComponent {
 
   getItems() {
     const collectionRef = this.cartService.getItems();
-    collectionRef.subscribe(ss => this.items = ss);
-  }
-
-  clearCart() {
-    this.items = this.cartService.clearCart();
-    return this.items;
+    collectionRef.subscribe(ss => {
+      this.items = ss;
+      this.totalPrice = this.cartService.totalPrice;
+      this.totalAmount = this.cartService.totalAmount;
+    });
   }
 
   removeItem() {
@@ -43,5 +43,9 @@ export class CartComponent {
 
   clear() {
     this.cartService.clearCart();
+  }
+
+  checkout() {
+   this.cartService.checkout();
   }
 }

@@ -14,7 +14,8 @@ export class CartService implements OnInit {
   productName: string = '';
   amount: number = 1;
   price!: number;
-  totalItemPrice!: number;
+  totalPrice!: number;
+  totalAmount!: number;
 
   constructor(
     private firestore: AngularFirestore, 
@@ -61,16 +62,54 @@ export class CartService implements OnInit {
     );
   }
 
+  // getItems() {
+  //   return this.firestore.collection('carts').snapshotChanges().pipe(
+  //     map(actions => {
+  //       let total = 0; // Initialize totalItemPrice
+  //       this.items = actions.map(a => {
+  //         const data = a.payload.doc.data() as any;
+  //         this.id = a.payload.doc.id;
+  //         total += data.price * data.amount; // Calculate totalItemPrice
+  //         return { id: this.id, ...data };
+  //       });
+  //       this.totalItemPrice = total; // Update totalItemPrice property
+  //       return this.items;
+  //     })
+  //   );
+  // }
+
   getItems() {
     return this.firestore.collection('carts').snapshotChanges().pipe(
       map(actions => {
-        return actions.map(a => {
+        let total = 0;
+        let totalAmount = 0;
+        this.items = actions.map(a => {
           const data = a.payload.doc.data() as any;
           this.id = a.payload.doc.id;
+          total += data.price * data.amount;
+          totalAmount += data.amount;
           return { id: this.id, ...data };
         });
+        this.totalPrice = total;
+        this.totalAmount = totalAmount; 
+        return this.items;
       })
     );
+  }
+
+  checkout() {
+   this.firestore.collection('carts').get().subscribe((snapshot) => {
+     snapshot.forEach(doc => {
+       this.firestore.collection('orders').add({
+         userId: this.userId,
+         imageUrl: (doc.data() as any).imageUrl,
+         name: (doc.data() as any).name,
+         price: (doc.data() as any).price,
+         amount: (doc.data() as any).amount
+       });
+     });
+   });
+   this.clearCart();
   }
 
   clearCart() {
