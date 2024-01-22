@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { VerificationComponent } from './verification/verification.component';
 import { AuthService } from './services/auth.service';
+import { CartComponent } from './cart/cart.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'password-reset', component: PasswordResetComponent },
   { path: 'verification', component: VerificationComponent },
+  { path: 'cart', component: CartComponent },
 ];
 
 @NgModule({

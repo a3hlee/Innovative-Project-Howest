@@ -21,6 +21,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { LoginComponent } from './login/login.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { CartComponent } from './cart/cart.component';
+import { ProductComponent } from './product/product.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { CartComponent } from './cart/cart.component';
     LoginComponent,
     PasswordResetComponent,
     CartComponent,
+    ProductComponent,
   ],
   imports: [
     BrowserModule,
