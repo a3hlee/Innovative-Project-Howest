@@ -36,19 +36,6 @@ export class ProductService implements OnInit {
     });
   }
 
-  findProduct(id: string): Observable<any> {
-    return this.db.collection('products').doc(id).snapshotChanges().pipe(
-      map(doc => {
-        if (doc.payload.exists) {
-          const data = doc.payload.data() as any;
-          this.id = doc.payload.id;
-          return { id: this.id, ...data };
-        }
-        return null;
-      })
-    );
-  }
-
   getProducts() {
     return this.db.collection('products').snapshotChanges().pipe(
       map(actions => {
@@ -76,8 +63,8 @@ export class ProductService implements OnInit {
     return collection;
   }
 
-  updateProduct(product: any): Observable<void> {
-    const productDoc = this.db.collection('products').doc(this.id);
+  updateProduct(updateId: string ,product: any): Observable<void> {
+    const productDoc = this.db.collection('products').doc(updateId);
 
     return new Observable<void>((observer) => {
       productDoc.ref.get().then((docSnapshot) => {
@@ -86,6 +73,9 @@ export class ProductService implements OnInit {
             .then(() => {
               observer.next();
               observer.complete();
+              console.log("idUpdate: " + this.id);
+              console.log("idUpdateVar: " + updateId);
+
             })
             .catch((error) => {
               console.error('Error updating product:', error);

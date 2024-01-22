@@ -18,7 +18,7 @@ export class SettingsAdminComponent implements OnInit {
   productAmount: number = 1;
 
   isEdit: boolean = false;
-  selectedProductId: string | null = null;
+  selectedProductId!: string;
 
   categories: any[] = [];
 
@@ -37,6 +37,11 @@ export class SettingsAdminComponent implements OnInit {
   ngAfterViewInit() {
     this.products.paginator = this.paginator;
     this.products.sort = this.sort;
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.products.filter = filterValue.trim().toLowerCase();
   }
 
   getProducts() {
@@ -79,6 +84,8 @@ export class SettingsAdminComponent implements OnInit {
   openUpdateForm(product: any): void {
     this.isEdit = true;
     this.selectedProductId = product.id;
+    console.log("product id "+product.id);
+    console.log("selectedproductid "+this.selectedProductId);
 
     this.imageUrl = product.imageUrl || '';
     this.productName = product.name || '';
@@ -88,11 +95,9 @@ export class SettingsAdminComponent implements OnInit {
     this.productAmount = product.amount || 1;
   }
 
-  // ... existing methods
-
   resetForm(): void {
     this.isEdit = false;
-    this.selectedProductId = null;
+    this.selectedProductId = '';
 
     this.imageUrl = '';
     this.productName = '';
@@ -114,7 +119,7 @@ export class SettingsAdminComponent implements OnInit {
         amount: this.productAmount
       };
 
-      this.productService.updateProduct(updatedProduct)
+      this.productService.updateProduct(updatedProduct.id, updatedProduct)
         .subscribe(
           () => {
             this.imageUrl = '';
@@ -124,7 +129,7 @@ export class SettingsAdminComponent implements OnInit {
             this.productCategory = '';
             this.productService.openSnackBar('✅Successfully updated product!', 'Nice!');
             this.isEdit = false;
-            this.selectedProductId = null;
+            this.selectedProductId = '';
           },
           () => {
             this.productService.openSnackBar('❗Error updating product. Please try again.', 'OK!');
