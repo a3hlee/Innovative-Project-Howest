@@ -15,10 +15,11 @@ Deze website zal ik uitwerken met:
 Plaats hier de nodig informatie om het
 project te kunnen uitvoeren:
 
-- API keys of nodige secrets
-- Logingegevens
-- Database configuraties
-- ...
+- Logingegevens admin:
+- email: test.foodstore-gwenny@outlook.com
+- password: Test123?
+
+- toegang tot Firebase?
 
 ## Bronnenlijst
 ### Firebase
