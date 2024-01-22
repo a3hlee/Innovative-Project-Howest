@@ -9,12 +9,27 @@ import { Router } from '@angular/router';
 export class AuthService {
   isLoggedIn: boolean | undefined;
   isAdmin: boolean = false;
+  userId: string = '';
 
   constructor(
     private afAuth: AngularFireAuth,
     private snackBar: MatSnackBar,
     private router: Router
   ) {
+    this.checkAuthStatus();
+  }
+
+  getUid() {
+    return this.afAuth.currentUser.then((user) => {
+      if (user) {
+        this.userId = user.uid;
+      } else {
+        this.userId = '';
+      }
+    });
+  }
+
+  checkAuthStatus() {
     this.afAuth.authState.subscribe((user) => {
       if (user) {
         this.isLoggedIn = true;
