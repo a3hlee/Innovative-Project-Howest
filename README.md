@@ -1,7 +1,9 @@
 # Website Foodstore Gwenny
 
 ## Project
-Als project heb ik gekozen om een website te maken voor mijn ouders. Ik heb dit gekozen omdat mijn moeder een Vishandel-Traiteur heeft en al bijna een halfjaar uitgebreidt heeft naar een automatenshop. Voor Vishandel-Traiteur Jonas bestaat er al een website die toch nog regelmatig gebruikt wordt. Dus zou het ook handig zijn om voor de automatenshop een website te hebben. Deze website heeft ook een bestelsysteem en enkel de admin mag producten aanpassen. Een eventuele uitbreiding zou kunnen zijn dat de website van Vishandel-Traiteur Jonas vernieuwt wordt.
+Project gemaakt als innovatice project voor Howest Brugge. Een eerder bedacht concept voor mijn ouders, deze opdracht is groter gemaakt ten opdrachte van de lectoren van Howest en heb ik zelf niet meer uitgewerkt na einde van de opleiding. Onderstaande uitleg was mijn uitleg voor waarom ik voor dit project gekozen had.
+
+*Als project heb ik gekozen om een website te maken voor mijn ouders. Ik heb dit gekozen omdat mijn moeder een Vishandel-Traiteur heeft en al bijna een halfjaar uitgebreidt heeft naar een automatenshop. Voor Vishandel-Traiteur Jonas bestaat er al een website die toch nog regelmatig gebruikt wordt. Dus zou het ook handig zijn om voor de automatenshop een website te hebben. Deze website heeft ook een bestelsysteem en enkel de admin mag producten aanpassen. Een eventuele uitbreiding zou kunnen zijn dat de website van Vishandel-Traiteur Jonas vernieuwt wordt.*
 
 ### Technologieën 
 Deze website zal ik uitwerken met:
@@ -21,7 +23,7 @@ project te kunnen uitvoeren:
 
 - toegang tot Firebase?
 
-## Bronnenlijst
+## Bronnenlijst (verplicht vanuit opdrachtgever)
 ### Firebase
 - Mondeling
 - https://firebase.google.com/
